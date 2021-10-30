@@ -17,6 +17,7 @@ async function run() {
       await client.connect();
       const database = client.db("trouble");
       const userCollection = database.collection("user");
+      const userOrder = database.collection("client");
       //get all api
       app.get('/products',async(req,res)=>
       {
@@ -28,10 +29,19 @@ async function run() {
       app.get('/products/:id',async(req,res)=>
       {
         const id =req.params.id;
-        console.log('getting specifiq services');
         const query={_id: ObjectId(id)};
         const user =await userCollection.findOne(query);
         res.send(user);
+      })
+      //post client to server
+      app.post('/order', async (req,res)=>
+      {
+        //console.log(req.body);
+        const newUser=req.body;
+        const result = await userOrder.insertOne(newUser);
+        res.json(result);
+
+
       })
       //console.log(`A document was inserted with the _id: ${result.insertedId}`);
     } finally {
