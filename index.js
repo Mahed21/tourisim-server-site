@@ -74,12 +74,27 @@ async function run() {
         res.json(result);
         
       })
-      // app.put('/order/:id', async(req,res)=>
-      // {
-      //   console.log('hi')
-      //   const id=req.id.params;
-      //   console.log(id);
-      // })
+      app.put('/order/:id', async(req,res)=>
+      {
+        console.log('hi')
+        const id=req.params.id;
+        console.log(id);
+        const UpdateUser= req.body;
+        const filter ={_id:Object(id)};
+        const option={upset:true}
+        const updateDoc={
+          $set:{
+            name:UpdateUser.name,
+            email:UpdateUser.email,
+            status:'Active',
+            address:UpdateUser.address,
+            phone:UpdateUser.phone,
+
+          },
+        };
+        const result= await userOrder.updateOne(filter,updateDoc,option);
+        res.send(result);
+      })
      
      
       
