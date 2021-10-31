@@ -76,19 +76,17 @@ async function run() {
       })
       app.put('/order/:id', async(req,res)=>
       {
-        console.log('hi')
+        
         const id=req.params.id;
-        console.log(id);
+        
         const UpdateUser= req.body;
-        const filter ={_id:Object(id)};
+        const filter ={_id:ObjectId(id)};
         const option={upset:true}
         const updateDoc={
           $set:{
-            name:UpdateUser.name,
-            email:UpdateUser.email,
+            
             status:'Active',
-            address:UpdateUser.address,
-            phone:UpdateUser.phone,
+           
 
           },
         };
