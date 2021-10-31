@@ -62,7 +62,15 @@ async function run() {
         const id =req.params.id;
         const query ={_id : ObjectId(id)};
         const result =await userOrder.deleteOne(query);
-        console.log('deletd');
+        res.json(result);
+        
+      })
+      app.get('/order/:email' , async (req,res)=>
+      {
+        const userEmail =req.params.email;
+        const query ={email:{$in :[userEmail]}};
+      
+        const result =await userOrder.find(query).toArray();
         res.json(result);
         
       })
