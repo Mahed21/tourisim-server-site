@@ -74,7 +74,13 @@ async function run() {
         res.json(result);
         
       })
-      //delete
+      // app.put('/order/:id', async(req,res)=>
+      // {
+      //   console.log('hi')
+      //   const id=req.id.params;
+      //   console.log(id);
+      // })
+     
      
       
       
